@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardApi from './componentes/card';
+import Db from './componentes/db';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
   const consumoApi = async () => {
     await axios.get('https://fakestoreapi.com/products/1').then(r => {
     setstate(r.data)
-    console.log(r.data)
+    
     }).catch(e => console.log(e))
   }
 
@@ -27,6 +28,8 @@ function App() {
       <img src={state.image}></img>
       <h2>precio: {state.price}</h2>
   
+
+      <Db></Db>
       {/* <CardApi title={state.title}></CardApi> */}
     </div>
   );
