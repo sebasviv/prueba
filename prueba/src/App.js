@@ -1,23 +1,33 @@
 import './App.css';
 import axios from "axios";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CardApi from './componentes/card';
+
 
 function App() {
 
-const consumoApi = () => {
-  
-  axios.get('https://fakestoreapi.com/products/1').then(r => {
+  const consumoApi = async () => {
+    await axios.get('https://fakestoreapi.com/products/1').then(r => {
+    setstate(r.data)
     console.log(r.data)
-  }).catch(e => console.log(e))
-}
+    }).catch(e => console.log(e))
+  }
+
+  const [state, setstate] = useState('')
 
   useEffect(() => {
     consumoApi()
   }, [])
-  
+
   return (
     <div>
+
+      <h1>titulo: {state.title}</h1>
+      <img src={state.image}></img>
+      <h2>precio: {state.price}</h2>
   
+      {/* <CardApi title={state.title}></CardApi> */}
     </div>
   );
 }
